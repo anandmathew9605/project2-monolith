@@ -112,25 +112,42 @@ RT_PRIVATE_AZ2_ROUTES=0.0.0.0/0 -> NAT GW AZ2
 RT_PRIVATE_AZ2_ASSOCIATIONS=subnet-0cc889380b4e6be88, subnet-0b2bc76f9f7fb1004
 
 =====================================
-TASK 2.1 (PENDING): SECURITY GROUPS
+TASK 2.1 COMPLETED: SECURITY GROUPS
 =====================================
 
-ALB_SG_ID=[To be created]
-WEB_SG_ID=[To be created]
-APP_SG_ID=[To be created]
-DB_SG_ID=[To be created]
-BASTION_SG_ID=[To be created]
-ZABBIX_SG_ID=[To be created]
+ALB_SG_ID=sg-0d313acfea76eefcc
+ALB_SG_NAME=project2-monolith-alb-sg
+ALB_SG_RULES=HTTP(Any), HTTPS(Any)
+
+BASTION_SG_ID=sg-00ee03de8559eaec9
+BASTION_SG_NAME=project2-monolith-bastion-sg
+BASTION_SG_RULES=SSH(49.37.232.176/32)
+
+ZABBIX_SG_ID=sg-0d59931f3a8dfd2e9
+ZABBIX_SG_NAME=project2-monolith-zabbix-sg
+ZABBIX_SG_RULES=HTTPS(Any), SSH(BastionSG)
+
+WEB_SG_ID=sg-0026c3feec4cf0e77
+WEB_SG_NAME=project2-monolith-web-sg
+WEB_SG_RULES=HTTP(ALB SG), SSH(BastionSG), 10050(ZabbixSG)
+
+APP_SG_ID=sg-0fef92868d4536eed
+APP_SG_NAME=project2-monolith-app-sg
+APP_SG_RULES=9000(WebSG), SSH(BastionSG), 10050(ZabbixSG)
+
+DB_SG_ID=sg-09c26b84e667abfc1
+DB_SG_NAME=project2-monolith-db-sg
+DB_SG_RULES=3306(AppSG), 3306(BastionSG)
 
 =====================================
 PHASE PROGRESS
 =====================================
 
 PHASE 1: MANUAL AWS CONFIGURATION
-├─ [✅ COMPLETE] TASK 1.1: VPC + Subnets (6 created)
-├─ [✅ COMPLETE] TASK 1.2: IGW + NAT Gateways (IGW + 2x NAT GW)
-├─ [✅ COMPLETE] TASK 1.3: Route Tables (3 created)
-├─ [ ] TASK 2.1: Security Groups (6 security groups)
+├─ [✅ COMPLETE] TASK 1.1: VPC + Subnets
+├─ [✅ COMPLETE] TASK 1.2: IGW + NAT Gateways
+├─ [✅ COMPLETE] TASK 1.3: Route Tables
+├─ [✅ COMPLETE] TASK 2.1: Security Groups
 ├─ [ ] TASK 3.1: Bastion Host
 ├─ [ ] TASK 3.2: Web Servers (2x) + ASG
 ├─ [ ] TASK 3.3: App Servers (2x) + ASG
@@ -141,6 +158,6 @@ PHASE 1: MANUAL AWS CONFIGURATION
 └─ [ ] TASK 7.0: Integrated System Testing
 
 =====================================
-Last Updated: 2025-12-01 15:35 IST
-Status: TASK 1.3 COMPLETE ✅ - Ready for TASK 2.1
+Last Updated: 2025-12-01 16:05 IST
+Status: TASK 2.1 COMPLETE ✅ - Ready for TASK 3.1
 =====================================
