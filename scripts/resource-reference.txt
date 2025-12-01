@@ -1,0 +1,146 @@
+PROJECT2-MONOLITH INFRASTRUCTURE REFERENCE
+==============================================
+
+Date Created: 2025-12-01
+Region: ap-south-1 (Mumbai)
+AZs: ap-south-1a, ap-south-1b
+AWS Account: 6081-4512-3666
+User: anandmathew9605
+
+=====================================
+TASK 1.1 COMPLETED: VPC + SUBNETS
+=====================================
+
+=== VPC ===
+VPC_ID=vpc-07fb237e5b9e71a46
+VPC_NAME=project2-monolith-vpc
+VPC_CIDR=10.0.0.0/16
+VPC_REGION=ap-south-1
+VPC_STATE=Available
+DNS_HOSTNAME_RESOLUTION=Enabled
+DNS_HOSTNAME_SUPPORT=Enabled
+
+=== PUBLIC SUBNETS (Web/Frontend & Management) ===
+PUBLIC_SUBNET_AZ1_NAME=project2-monolith-public-subnet-1
+PUBLIC_SUBNET_AZ1_ID=subnet-005a5ae3da9bc6770
+PUBLIC_SUBNET_AZ1_CIDR=10.0.1.0/24
+PUBLIC_SUBNET_AZ1_AZ=ap-south-1a
+PUBLIC_SUBNET_AZ1_AUTO_ASSIGN_PUBLIC_IP=Yes
+
+PUBLIC_SUBNET_AZ2_NAME=project2-monolith-public-subnet-2
+PUBLIC_SUBNET_AZ2_ID=subnet-058b38a9ab1f26783
+PUBLIC_SUBNET_AZ2_CIDR=10.0.2.0/24
+PUBLIC_SUBNET_AZ2_AZ=ap-south-1b
+PUBLIC_SUBNET_AZ2_AUTO_ASSIGN_PUBLIC_IP=Yes
+
+=== PRIVATE APP SUBNETS (Backend/PHP-FPM) ===
+PRIVATE_APP_SUBNET_AZ1_NAME=project2-monolith-app-subnet-1
+PRIVATE_APP_SUBNET_AZ1_ID=subnet-0a56be6593ebdd335
+PRIVATE_APP_SUBNET_AZ1_CIDR=10.0.11.0/24
+PRIVATE_APP_SUBNET_AZ1_AZ=ap-south-1a
+PRIVATE_APP_SUBNET_AZ1_AUTO_ASSIGN_PUBLIC_IP=No
+
+PRIVATE_APP_SUBNET_AZ2_NAME=project2-monolith-app-subnet-2
+PRIVATE_APP_SUBNET_AZ2_ID=subnet-0cc889380b4e6be88
+PRIVATE_APP_SUBNET_AZ2_CIDR=10.0.12.0/24
+PRIVATE_APP_SUBNET_AZ2_AZ=ap-south-1b
+PRIVATE_APP_SUBNET_AZ2_AUTO_ASSIGN_PUBLIC_IP=No
+
+=== PRIVATE DB SUBNETS (RDS MySQL) ===
+PRIVATE_DB_SUBNET_AZ1_NAME=project2-monolith-db-subnet-1
+PRIVATE_DB_SUBNET_AZ1_ID=subnet-07e5bb36b93dafbff
+PRIVATE_DB_SUBNET_AZ1_CIDR=10.0.21.0/24
+PRIVATE_DB_SUBNET_AZ1_AZ=ap-south-1a
+PRIVATE_DB_SUBNET_AZ1_AUTO_ASSIGN_PUBLIC_IP=No
+
+PRIVATE_DB_SUBNET_AZ2_NAME=project2-monolith-db-subnet-2
+PRIVATE_DB_SUBNET_AZ2_ID=subnet-0b2bc76f9f7fb1004
+PRIVATE_DB_SUBNET_AZ2_CIDR=10.0.22.0/24
+PRIVATE_DB_SUBNET_AZ2_AZ=ap-south-1b
+PRIVATE_DB_SUBNET_AZ2_AUTO_ASSIGN_PUBLIC_IP=No
+
+=====================================
+TASK 1.2 COMPLETED: INTERNET GATEWAY + NAT GATEWAYS
+=====================================
+
+=== INTERNET GATEWAY ===
+IGW_ID=igw-08c2fa207b601489a
+IGW_NAME=project2-monolith-igw
+IGW_STATE=Attached
+IGW_ATTACHED_VPC=vpc-07fb237e5b9e71a46
+
+=== ELASTIC IPs FOR NAT GATEWAYS ===
+EIP_AZ1_IP=13.233.31.195
+EIP_AZ1_ALLOCATION_ID=eipalloc-0e6874fc08803a3c2
+EIP_AZ1_ASSOCIATED_NAT_GW=nat-077a74d9f14f00c5e
+
+EIP_AZ2_IP=43.204.57.115
+EIP_AZ2_ALLOCATION_ID=eipalloc-07acd0f619adb1102
+EIP_AZ2_ASSOCIATED_NAT_GW=nat-0ea1e7aa0e243691b
+
+=== NAT GATEWAYS ===
+NATGW_AZ1_ID=nat-077a74d9f14f00c5e
+NATGW_AZ1_NAME=project2-monolith-natgw-az1
+NATGW_AZ1_SUBNET=subnet-005a5ae3da9bc6770 (10.0.1.0/24, ap-south-1a)
+NATGW_AZ1_EIP=13.233.31.195
+
+NATGW_AZ2_ID=nat-0ea1e7aa0e243691b
+NATGW_AZ2_NAME=project2-monolith-natgw-az2
+NATGW_AZ2_SUBNET=subnet-058b38a9ab1f26783 (10.0.2.0/24, ap-south-1b)
+NATGW_AZ2_EIP=43.204.57.115
+
+=====================================
+TASK 1.3 COMPLETED: ROUTE TABLES
+=====================================
+
+=== PUBLIC ROUTE TABLE ===
+RT_PUBLIC_ID=rtb-0836a359537138102
+RT_PUBLIC_NAME=project2-monolith-public-rt
+RT_PUBLIC_ROUTES=0.0.0.0/0 -> IGW
+RT_PUBLIC_ASSOCIATIONS=subnet-005a5ae3da9bc6770, subnet-058b38a9ab1f26783
+
+=== PRIVATE ROUTE TABLE AZ1 ===
+RT_PRIVATE_AZ1_ID=rtb-05574f8872cd0bd58
+RT_PRIVATE_AZ1_NAME=project2-monolith-private-rt1
+RT_PRIVATE_AZ1_ROUTES=0.0.0.0/0 -> NAT GW AZ1
+RT_PRIVATE_AZ1_ASSOCIATIONS=subnet-0a56be6593ebdd335, subnet-07e5bb36b93dafbff
+
+=== PRIVATE ROUTE TABLE AZ2 ===
+RT_PRIVATE_AZ2_ID=rtb-005363bec02a6b9ff
+RT_PRIVATE_AZ2_NAME=project2-monolith-private-rt2
+RT_PRIVATE_AZ2_ROUTES=0.0.0.0/0 -> NAT GW AZ2
+RT_PRIVATE_AZ2_ASSOCIATIONS=subnet-0cc889380b4e6be88, subnet-0b2bc76f9f7fb1004
+
+=====================================
+TASK 2.1 (PENDING): SECURITY GROUPS
+=====================================
+
+ALB_SG_ID=[To be created]
+WEB_SG_ID=[To be created]
+APP_SG_ID=[To be created]
+DB_SG_ID=[To be created]
+BASTION_SG_ID=[To be created]
+ZABBIX_SG_ID=[To be created]
+
+=====================================
+PHASE PROGRESS
+=====================================
+
+PHASE 1: MANUAL AWS CONFIGURATION
+├─ [✅ COMPLETE] TASK 1.1: VPC + Subnets (6 created)
+├─ [✅ COMPLETE] TASK 1.2: IGW + NAT Gateways (IGW + 2x NAT GW)
+├─ [✅ COMPLETE] TASK 1.3: Route Tables (3 created)
+├─ [ ] TASK 2.1: Security Groups (6 security groups)
+├─ [ ] TASK 3.1: Bastion Host
+├─ [ ] TASK 3.2: Web Servers (2x) + ASG
+├─ [ ] TASK 3.3: App Servers (2x) + ASG
+├─ [ ] TASK 4.1: Application Load Balancer
+├─ [ ] TASK 5.1: RDS MySQL Multi-AZ
+├─ [ ] TASK 5.2: Database Testing & Backup Verification
+├─ [ ] TASK 6.1: Zabbix Server Setup
+└─ [ ] TASK 7.0: Integrated System Testing
+
+=====================================
+Last Updated: 2025-12-01 15:35 IST
+Status: TASK 1.3 COMPLETE ✅ - Ready for TASK 2.1
+=====================================
