@@ -2,6 +2,7 @@ PROJECT2-MONOLITH INFRASTRUCTURE REFERENCE
 ==============================================
 
 Date Created: 2025-12-01
+Last Updated: 2025-12-02
 Region: ap-south-1 (Mumbai)
 AZs: ap-south-1a, ap-south-1b
 AWS Account: 6081-4512-3666
@@ -20,96 +21,72 @@ VPC_STATE=Available
 DNS_HOSTNAME_RESOLUTION=Enabled
 DNS_HOSTNAME_SUPPORT=Enabled
 
-=== PUBLIC SUBNETS (Web/Frontend & Management) ===
+=== PUBLIC SUBNETS ===
 PUBLIC_SUBNET_AZ1_NAME=project2-monolith-public-subnet-1
 PUBLIC_SUBNET_AZ1_ID=subnet-005a5ae3da9bc6770
 PUBLIC_SUBNET_AZ1_CIDR=10.0.1.0/24
 PUBLIC_SUBNET_AZ1_AZ=ap-south-1a
-PUBLIC_SUBNET_AZ1_AUTO_ASSIGN_PUBLIC_IP=Yes
 
 PUBLIC_SUBNET_AZ2_NAME=project2-monolith-public-subnet-2
 PUBLIC_SUBNET_AZ2_ID=subnet-058b38a9ab1f26783
 PUBLIC_SUBNET_AZ2_CIDR=10.0.2.0/24
 PUBLIC_SUBNET_AZ2_AZ=ap-south-1b
-PUBLIC_SUBNET_AZ2_AUTO_ASSIGN_PUBLIC_IP=Yes
 
-=== PRIVATE APP SUBNETS (Backend/PHP-FPM) ===
+=== PRIVATE APP SUBNETS ===
 PRIVATE_APP_SUBNET_AZ1_NAME=project2-monolith-app-subnet-1
 PRIVATE_APP_SUBNET_AZ1_ID=subnet-0a56be6593ebdd335
 PRIVATE_APP_SUBNET_AZ1_CIDR=10.0.11.0/24
 PRIVATE_APP_SUBNET_AZ1_AZ=ap-south-1a
-PRIVATE_APP_SUBNET_AZ1_AUTO_ASSIGN_PUBLIC_IP=No
 
 PRIVATE_APP_SUBNET_AZ2_NAME=project2-monolith-app-subnet-2
 PRIVATE_APP_SUBNET_AZ2_ID=subnet-0cc889380b4e6be88
 PRIVATE_APP_SUBNET_AZ2_CIDR=10.0.12.0/24
 PRIVATE_APP_SUBNET_AZ2_AZ=ap-south-1b
-PRIVATE_APP_SUBNET_AZ2_AUTO_ASSIGN_PUBLIC_IP=No
 
-=== PRIVATE DB SUBNETS (RDS MySQL) ===
+=== PRIVATE DB SUBNETS ===
 PRIVATE_DB_SUBNET_AZ1_NAME=project2-monolith-db-subnet-1
 PRIVATE_DB_SUBNET_AZ1_ID=subnet-07e5bb36b93dafbff
 PRIVATE_DB_SUBNET_AZ1_CIDR=10.0.21.0/24
 PRIVATE_DB_SUBNET_AZ1_AZ=ap-south-1a
-PRIVATE_DB_SUBNET_AZ1_AUTO_ASSIGN_PUBLIC_IP=No
 
 PRIVATE_DB_SUBNET_AZ2_NAME=project2-monolith-db-subnet-2
 PRIVATE_DB_SUBNET_AZ2_ID=subnet-0b2bc76f9f7fb1004
 PRIVATE_DB_SUBNET_AZ2_CIDR=10.0.22.0/24
 PRIVATE_DB_SUBNET_AZ2_AZ=ap-south-1b
-PRIVATE_DB_SUBNET_AZ2_AUTO_ASSIGN_PUBLIC_IP=No
 
 =====================================
 TASK 1.2 COMPLETED: INTERNET GATEWAY + NAT GATEWAYS
 =====================================
 
-=== INTERNET GATEWAY ===
 IGW_ID=igw-08c2fa207b601489a
 IGW_NAME=project2-monolith-igw
-IGW_STATE=Attached
-IGW_ATTACHED_VPC=vpc-07fb237e5b9e71a46
 
-=== ELASTIC IPs FOR NAT GATEWAYS ===
 EIP_AZ1_IP=13.233.31.195
 EIP_AZ1_ALLOCATION_ID=eipalloc-0e6874fc08803a3c2
-EIP_AZ1_ASSOCIATED_NAT_GW=nat-077a74d9f14f00c5e
 
 EIP_AZ2_IP=43.204.57.115
 EIP_AZ2_ALLOCATION_ID=eipalloc-07acd0f619adb1102
-EIP_AZ2_ASSOCIATED_NAT_GW=nat-0ea1e7aa0e243691b
 
-=== NAT GATEWAYS ===
 NATGW_AZ1_ID=nat-077a74d9f14f00c5e
 NATGW_AZ1_NAME=project2-monolith-natgw-az1
-NATGW_AZ1_SUBNET=subnet-005a5ae3da9bc6770 (10.0.1.0/24, ap-south-1a)
 NATGW_AZ1_EIP=13.233.31.195
 
 NATGW_AZ2_ID=nat-0ea1e7aa0e243691b
 NATGW_AZ2_NAME=project2-monolith-natgw-az2
-NATGW_AZ2_SUBNET=subnet-058b38a9ab1f26783 (10.0.2.0/24, ap-south-1b)
 NATGW_AZ2_EIP=43.204.57.115
 
 =====================================
 TASK 1.3 COMPLETED: ROUTE TABLES
 =====================================
 
-=== PUBLIC ROUTE TABLE ===
 RT_PUBLIC_ID=rtb-0836a359537138102
 RT_PUBLIC_NAME=project2-monolith-public-rt
-RT_PUBLIC_ROUTES=0.0.0.0/0 -> IGW
-RT_PUBLIC_ASSOCIATIONS=subnet-005a5ae3da9bc6770, subnet-058b38a9ab1f26783
 
-=== PRIVATE ROUTE TABLE AZ1 ===
 RT_PRIVATE_AZ1_ID=rtb-05574f8872cd0bd58
 RT_PRIVATE_AZ1_NAME=project2-monolith-private-rt1
-RT_PRIVATE_AZ1_ROUTES=0.0.0.0/0 -> NAT GW AZ1
-RT_PRIVATE_AZ1_ASSOCIATIONS=subnet-0a56be6593ebdd335, subnet-07e5bb36b93dafbff
 
-=== PRIVATE ROUTE TABLE AZ2 ===
 RT_PRIVATE_AZ2_ID=rtb-005363bec02a6b9ff
 RT_PRIVATE_AZ2_NAME=project2-monolith-private-rt2
-RT_PRIVATE_AZ2_ROUTES=0.0.0.0/0 -> NAT GW AZ2
-RT_PRIVATE_AZ2_ASSOCIATIONS=subnet-0cc889380b4e6be88, subnet-0b2bc76f9f7fb1004
 
 =====================================
 TASK 2.1 COMPLETED: SECURITY GROUPS
@@ -117,47 +94,162 @@ TASK 2.1 COMPLETED: SECURITY GROUPS
 
 ALB_SG_ID=sg-0d313acfea76eefcc
 ALB_SG_NAME=project2-monolith-alb-sg
-ALB_SG_RULES=HTTP(Any), HTTPS(Any)
 
 BASTION_SG_ID=sg-00ee03de8559eaec9
 BASTION_SG_NAME=project2-monolith-bastion-sg
-BASTION_SG_RULES=SSH(49.37.232.176/32)
 
 ZABBIX_SG_ID=sg-0d59931f3a8dfd2e9
 ZABBIX_SG_NAME=project2-monolith-zabbix-sg
-ZABBIX_SG_RULES=HTTPS(Any), SSH(BastionSG)
 
 WEB_SG_ID=sg-0026c3feec4cf0e77
 WEB_SG_NAME=project2-monolith-web-sg
-WEB_SG_RULES=HTTP(ALB SG), SSH(BastionSG), 10050(ZabbixSG)
 
 APP_SG_ID=sg-0fef92868d4536eed
 APP_SG_NAME=project2-monolith-app-sg
-APP_SG_RULES=9000(WebSG), SSH(BastionSG), 10050(ZabbixSG)
 
 DB_SG_ID=sg-09c26b84e667abfc1
 DB_SG_NAME=project2-monolith-db-sg
-DB_SG_RULES=3306(AppSG), 3306(BastionSG)
+
+=====================================
+TASK 3.1 COMPLETED: BASTION HOST
+=====================================
+
+BASTION_INSTANCE_ID=i-0ef733ddc4e4ae9e3
+BASTION_INSTANCE_NAME=project2-monolith-bastion
+BASTION_INSTANCE_TYPE=t3.micro
+BASTION_AMI=Ubuntu Server 24.04 LTS
+BASTION_PRIVATE_IP=10.0.1.66
+BASTION_PUBLIC_IP=43.205.240.36
+BASTION_SUBNET_ID=subnet-005a5ae3da9bc6770
+BASTION_AZ=ap-south-1a
+BASTION_SG_ID=sg-00ee03de8559eaec9
+BASTION_KEY_PAIR=project2-monolith-key
+
+=====================================
+TASK 3.2 COMPLETED: WEB/APP ASG + LAUNCH TEMPLATE
+=====================================
+
+LT_NAME=project2-monolith-lt
+LT_ID=lt-0c42207fca3dc18df
+LT_AMI=Ubuntu Server 24.04 LTS
+LT_INSTANCE_TYPE=t3.micro
+LT_KEY_PAIR=project2-monolith-key
+LT_SECURITY_GROUPS=sg-0026c3feec4cf0e77,sg-0fef92868d4536eed
+LT_ROOT_VOLUME=8 GiB gp3
+
+ASG_NAME=project2-monolith-asg
+ASG_LAUNCH_TEMPLATE=lt-0c42207fca3dc18df
+ASG_VPC=vpc-07fb237e5b9e71a46
+ASG_SUBNETS=subnet-0a56be6593ebdd335,subnet-0cc889380b4e6be88
+ASG_MIN_SIZE=1
+ASG_DESIRED_SIZE=2
+ASG_MAX_SIZE=2
+ASG_TARGET_GROUP=project2-monolith-tg
+
+WEB_APP_INSTANCE_1_ID=i-0d467f29f260c8c61
+WEB_APP_INSTANCE_1_AZ=ap-south-1a
+
+WEB_APP_INSTANCE_2_ID=i-0ae27afea8c60c5a5
+WEB_APP_INSTANCE_2_AZ=ap-south-1b
+
+=====================================
+TASK 4.1 COMPLETED: APPLICATION LOAD BALANCER
+=====================================
+
+ALB_NAME=project2-monolith-alb
+ALB_DNS=project2-monolith-alb-1168601212.ap-south-1.elb.amazonaws.com
+ALB_TYPE=Application Load Balancer
+ALB_SCHEME=Internet-facing
+ALB_VPC=vpc-07fb237e5b9e71a46
+ALB_SUBNETS=subnet-005a5ae3da9bc6770,subnet-058b38a9ab1f26783
+ALB_SECURITY_GROUP=sg-0d313acfea76eefcc
+
+TG_NAME=project2-monolith-tg
+TG_PROTOCOL=HTTP
+TG_PORT=80
+TG_VPC=vpc-07fb237e5b9e71a46
+TG_HEALTH_CHECK_PATH=/
+
+LISTENER_PROTOCOL=HTTP
+LISTENER_PORT=80
+
+=====================================
+TASK 5.1 COMPLETED: RDS MYSQL DATABASE
+=====================================
+
+=== RDS INSTANCE ===
+DB_INSTANCE_ID=project2-monolith-db
+DB_ENDPOINT=project2-monolith-db.cjq40ma4q744.ap-south-1.rds.amazonaws.com
+DB_PORT=3306
+DB_ENGINE=MySQL 8.0.x
+DB_INSTANCE_CLASS=db.t3.micro
+DB_STORAGE_TYPE=gp3
+DB_ALLOCATED_STORAGE=20 GiB
+DB_MASTER_USERNAME=admin
+DB_INITIAL_DATABASE=monolithdb
+DB_VPC=vpc-07fb237e5b9e71a46
+DB_SUBNET_GROUP=project2-monolith-db-subnet-group
+DB_AVAILABILITY_ZONE=ap-south-1a
+DB_PUBLIC_ACCESS=No
+DB_SECURITY_GROUP=sg-09c26b84e667abfc1
+
+=== DB SUBNET GROUP ===
+DB_SUBNET_GROUP_NAME=project2-monolith-db-subnet-group
+DB_SUBNETS=subnet-07e5bb36b93dafbff,subnet-0b2bc76f9f7fb1004
+
+=== SECRETS MANAGER ===
+DB_SECRET_NAME=rds!db-f74d77c4-e1fc-4c6f-a1c5-186320d65edb
+DB_SECRET_TYPE=RDS database credentials
+DB_SECRET_ENCRYPTION=KMS (Customer managed key)
+DB_KMS_KEY_ALIAS=project2-monolith-db-key
+
+=== CONNECTION STRING ===
+DB_CONNECTION_STRING=mysql -h project2-monolith-db.cjq40ma4q744.ap-south-1.rds.amazonaws.com -u admin -p[SECRET]
 
 =====================================
 PHASE PROGRESS
 =====================================
 
-PHASE 1: MANUAL AWS CONFIGURATION
-├─ [✅ COMPLETE] TASK 1.1: VPC + Subnets
-├─ [✅ COMPLETE] TASK 1.2: IGW + NAT Gateways
-├─ [✅ COMPLETE] TASK 1.3: Route Tables
-├─ [✅ COMPLETE] TASK 2.1: Security Groups
-├─ [ ] TASK 3.1: Bastion Host
-├─ [ ] TASK 3.2: Web Servers (2x) + ASG
-├─ [ ] TASK 3.3: App Servers (2x) + ASG
-├─ [ ] TASK 4.1: Application Load Balancer
-├─ [ ] TASK 5.1: RDS MySQL Multi-AZ
-├─ [ ] TASK 5.2: Database Testing & Backup Verification
-├─ [ ] TASK 6.1: Zabbix Server Setup
-└─ [ ] TASK 7.0: Integrated System Testing
+PHASE 1: MANUAL AWS CONFIGURATION ✅ COMPLETE
+├─ [✅] TASK 1.1: VPC + Subnets
+├─ [✅] TASK 1.2: IGW + NAT Gateways
+├─ [✅] TASK 1.3: Route Tables
+├─ [✅] TASK 2.1: Security Groups
+├─ [✅] TASK 3.1: Bastion Host
+├─ [✅] TASK 3.2: Web/App ASG + Launch Template
+├─ [✅] TASK 4.1: Application Load Balancer
+└─ [✅] TASK 5.1: RDS MySQL Database
+
+PHASE 2: TERRAFORM MIGRATION (NEXT)
+├─ [ ] Write Terraform code
+├─ [ ] Import existing resources
+├─ [ ] Validate terraform plan
+└─ [ ] Test destroy + recreate
+
+PHASE 3: ANSIBLE CONFIGURATION
+├─ [ ] Install Ansible on Bastion
+├─ [ ] Write playbooks
+├─ [ ] Deploy application
+└─ [ ] Integrated testing
 
 =====================================
-Last Updated: 2025-12-01 16:05 IST
-Status: TASK 2.1 COMPLETE ✅ - Ready for TASK 3.1
+COST SUMMARY (MONTHLY ESTIMATES)
+=====================================
+
+VPC + Subnets:              Free
+Internet Gateway:           Free
+NAT Gateways (2x):          ~$32
+Elastic IPs (2x):           Included with NAT
+Bastion (t3.micro):         ~$7
+ASG Instances (2x t3.micro): ~$14
+ALB:                        ~$18
+RDS (db.t3.micro):          ~$15-30
+Secrets Manager:            ~$0.50
+KMS Key:                    ~$1
+-------------------------------------
+TOTAL:                      ~$87-102/month
+
+=====================================
+Last Updated: 2025-12-02 21:52 IST
+Status: PHASE 1 COMPLETE ✅ - Ready for Terraform Migration
 =====================================
