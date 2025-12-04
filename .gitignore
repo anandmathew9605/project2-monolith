@@ -1,0 +1,313 @@
+# =============================================================================
+# PROJECT2-MONOLITH GITIGNORE
+# =============================================================================
+# Security-first approach: Never commit credentials, keys, or sensitive data
+# =============================================================================
+
+# =============================================================================
+# TERRAFORM
+# =============================================================================
+
+# Local .terraform directories
+**/.terraform/*
+.terraform/
+.terraform.lock.hcl
+
+# .tfstate files
+*.tfstate
+*.tfstate.*
+*.tfstate.backup
+*.tfstate.*.backup
+
+# Crash log files
+crash.log
+crash.*.log
+
+# Exclude all .tfvars files, which might contain sensitive data
+*.tfvars
+*.tfvars.json
+*.auto.tfvars
+
+# Ignore override files as they are usually used to override resources locally
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Ignore CLI configuration files
+.terraformrc
+terraform.rc
+
+# Ignore plan files
+*.tfplan
+*.tf.plan
+
+# Ignore generated configuration files during import
+generated*.tf
+generated_*.tf
+
+# Ignore terraform apply output
+apply_output.json
+plan_output.json
+
+# =============================================================================
+# AWS CREDENTIALS & SECRETS
+# =============================================================================
+
+# AWS credentials file
+.aws/
+~/.aws/
+aws_credentials
+.env
+.env.local
+.env.*.local
+
+# AWS temporary credentials
+aws_temp_creds.txt
+credentials.txt
+temp_credentials.json
+
+# Secrets files
+*.secret
+*.key
+*.pem
+secrets/
+.secrets/
+secrets.json
+secrets.yml
+
+# =============================================================================
+# SSH KEYS
+# =============================================================================
+
+# SSH private keys
+*.pem
+*.key
+*.ppk
+id_rsa
+id_rsa.pub
+id_dsa
+id_dsa.pub
+*_rsa
+*_rsa.pub
+*_dsa
+*_dsa.pub
+
+# SSH config
+.ssh/config
+.ssh/known_hosts
+.ssh/authorized_keys
+
+# =============================================================================
+# ANSIBLE
+# =============================================================================
+
+# Ansible vault files (if encrypted)
+*.vault
+.vault-password
+vault_password.txt
+
+# Ansible retry files
+*.retry
+
+# Dynamic inventory cache
+.ansible/
+inventory/.cache/
+inventory/*.cache
+hosts.cache
+.inventory_cache
+
+# Ansible logs
+ansible.log
+ansible_*.log
+
+# Ansible vault key
+.vault_pass
+.vault_pass.txt
+
+# =============================================================================
+# PYTHON & VENV
+# =============================================================================
+
+# Python virtual environments
+venv/
+env/
+ENV/
+.venv
+.env_venv
+python_env/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# =============================================================================
+# IDE / EDITOR FILES
+# =============================================================================
+
+# VS Code
+.vscode/
+*.code-workspace
+.vs/
+.idea/
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Vim
+.vim/
+*.swp
+*.swo
+*~
+.netrwhist
+
+# Emacs
+*~
+.\#*
+\#*\#
+*.elc
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+# =============================================================================
+# OS SPECIFIC FILES
+# =============================================================================
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Windows
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# Linux
+.directory
+.Trash-*
+
+# =============================================================================
+# LOGS & TEMPORARY FILES
+# =============================================================================
+
+# Log files
+*.log
+logs/
+*.log.*
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.bak
+*.backup
+*.swp
+*.swo
+
+# Mac temporary files
+.DS_Store
+._*
+
+# =============================================================================
+# BUILD ARTIFACTS
+# =============================================================================
+
+# Build outputs
+dist/
+build/
+target/
+*.o
+*.a
+*.so
+
+# =============================================================================
+# DOCUMENTATION TEMP FILES
+# =============================================================================
+
+# Backup documentation
+*.md.bak
+*.md.backup
+docs_backup/
+
+# =============================================================================
+# PROJECT-SPECIFIC SENSITIVE FILES
+# =============================================================================
+
+# SSH key pair files
+*.pem
+*-key
+project2-monolith-key*
+project2-monolith-key.pem
+
+# Database backups
+*.sql
+*.sql.gz
+*.dump
+
+# Configuration with credentials
+config.local.yml
+config.local.yaml
+local_config.json
+
+# State files from previous runs
+previous_state.json
+state_backup.json
+
+# =============================================================================
+# ALLOWED EXCEPTIONS (Whitelist)
+# =============================================================================
+# Note: If you need to commit ANY of the above, use:
+# git add -f file_name.ext
+# But NEVER do this for credentials/secrets!
+
+# =============================================================================
+# DOCUMENTATION
+# =============================================================================
+
+# SAFE TO COMMIT:
+# ✅ .tf files (Terraform code)
+# ✅ .yml/.yaml files (without credentials)
+# ✅ .md files (documentation)
+# ✅ .sh files (scripts without secrets)
+# ✅ Terraform outputs (without sensitive data)
+
+# DO NOT COMMIT:
+# ❌ .tfstate files
+# ❌ .pem / .key files
+# ❌ .env files
+# ❌ Credentials of any kind
+# ❌ SSH private keys
+# ❌ Any file with passwords/tokens
