@@ -6,7 +6,7 @@ resource "aws_db_subnet_group" "main" {
   description = "DB subnet group for MySQL in private subnets"
   name        = "project2-monolith"
   region      = "ap-south-1"
-  subnet_ids  = ["subnet-07e5bb36b93dafbff", "subnet-0b2bc76f9f77b1004"]
+  subnet_ids  = ["subnet-0a2d28ad572417987", "subnet-05f0f6ac797abea0a"]
   tags        = {}
   tags_all    = {}
 }
@@ -78,5 +78,5 @@ resource "aws_db_instance" "main" {
   }
   upgrade_storage_config = null
   username               = "admin"
-  vpc_security_group_ids = ["sg-09c26b84e667abfc1"]
+  vpc_security_group_ids = ["sg-06f5023375e929f9a"]
 }

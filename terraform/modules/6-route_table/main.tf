@@ -5,7 +5,7 @@
 resource "aws_route_table" "public" {
   route {
     cidr_block = "0.0.0.0/0"
-    gateway_id = "igw-08c2fa207b601489a"
+    gateway_id = var.igw
   }
   tags = {
     Name = "project2-monolith-public-rt"
@@ -14,9 +14,10 @@ resource "aws_route_table" "public" {
     Name    = "project2-monolith-public-rt"
     project = "project2-monolith"
   }
-  vpc_id = "vpc-07fb237e5b9e71a46"
+  vpc_id = var.vpc_id
 }
-# __generated__ by Terraform
+
+/*# __generated__ by Terraform
 # Please review these resources and move them into your main configuration files.
 
 # __generated__ by Terraform
@@ -51,4 +52,4 @@ resource "aws_route_table" "private_az2" {
     project = "project2-monolith"
   }
   vpc_id = "vpc-07fb237e5b9e71a46"
-}
+}*/

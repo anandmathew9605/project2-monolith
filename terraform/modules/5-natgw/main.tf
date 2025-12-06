@@ -44,3 +44,32 @@ resource "aws_nat_gateway" "nat_az2" {
   }
   vpc_id = "vpc-07fb237e5b9e71a46"
 }
+
+/*# __generated__ by Terraform
+# Please review these resources and move them into your main configuration files.
+
+# __generated__ by Terraform from "nat-1cff8ac2b6f558d7d"
+resource "aws_nat_gateway" "nat" {
+  allocation_id     = null
+  availability_mode = "regional"
+  connectivity_type = "public"
+  region            = "ap-south-1"
+  subnet_id         = null
+  tags = {
+    Name = "project2-monolith-natgw"
+  }
+  tags_all = {
+    Name = "project2-monolith-natgw"
+  }
+  vpc_id = var.vpc_id
+  availability_zone_address {
+    allocation_ids       = ["eipalloc-04205e3d27be318c2"]
+    availability_zone    = "ap-south-1b"
+    availability_zone_id = "aps1-az3"
+  }
+  availability_zone_address {
+    allocation_ids       = ["eipalloc-0f03657da91d68ae4"]
+    availability_zone    = "ap-south-1a"
+    availability_zone_id = "aps1-az1"
+  }
+}*/

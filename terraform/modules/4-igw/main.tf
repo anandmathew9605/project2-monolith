@@ -11,5 +11,5 @@ resource "aws_internet_gateway" "main" {
     Name    = "project2-monolith-igw"
     project = "project2-monolith"
   }
-  vpc_id = "vpc-07fb237e5b9e71a46"
+  vpc_id = var.vpc_id
 }

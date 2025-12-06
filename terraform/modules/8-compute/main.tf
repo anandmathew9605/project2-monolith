@@ -24,7 +24,7 @@ resource "aws_instance" "bastion" {
   secondary_private_ips      = []
   security_groups            = []
   source_dest_check          = true
-  subnet_id                  = "subnet-005a5ae3da9bc6770"
+  subnet_id                  = "subnet-05152d60592905153"
   tags = {
     Name = "project2-monolith-bastion"
   }
@@ -36,7 +36,7 @@ resource "aws_instance" "bastion" {
   user_data                   = "#!/bin/bash\napt-get update -y\napt-get install -y python3 python3-pip\n\n"
   user_data_replace_on_change = null
   volume_tags                 = null
-  vpc_security_group_ids      = ["sg-00ee03de8559eaec9"]
+  vpc_security_group_ids      = ["sg-06f5023375e929f9a"]
   capacity_reservation_specification {
     capacity_reservation_preference = "open"
   }
@@ -90,7 +90,7 @@ resource "aws_instance" "bastion" {
 
 # __generated__ by Terraform
 resource "aws_launch_template" "web_app" {
-  default_version                      = 2
+  default_version                      = 1
   description                          = "Launch template for web & app tier (Apache + PHP) with necessary package"
   disable_api_stop                     = false
   disable_api_termination              = false
@@ -110,7 +110,7 @@ resource "aws_launch_template" "web_app" {
   }
   update_default_version = null
   user_data              = "IyEvYmluL2Jhc2gKYXB0LWdldCB1cGRhdGUgLXkKYXB0LWdldCBpbnN0YWxsIC15IHB5dGhvbjMgcHl0aG9uMy1waXAKCiMgQ3JlYXRlIG1hcmtlciBmaWxlCmVjaG8gIlVzZXIgZGF0YSBleGVjdXRlZCBhdCAkKGRhdGUpIiA+IC92YXIvbG9nL3VzZXJkYXRhLWV4ZWN1dGlvbi5sb2cK"
-  vpc_security_group_ids = ["sg-0026c3feec4cf0e77", "sg-0fef92868d4536eed"]
+  vpc_security_group_ids = ["sg-06f5023375e929f9a"]
   tag_specifications {
     resource_type = "instance"
     tags = {
@@ -162,9 +162,9 @@ resource "aws_autoscaling_group" "web_app" {
   region                    = "ap-south-1"
   service_linked_role_arn   = "arn:aws:iam::608145123666:role/aws-service-role/autoscaling.amazonaws.com/AWSServiceRoleForAutoScaling"
   suspended_processes       = []
-  target_group_arns         = ["arn:aws:elasticloadbalancing:ap-south-1:608145123666:targetgroup/project2-monolith-tg/2958670c7dc5cccd"]
+  target_group_arns         = ["arn:aws:elasticloadbalancing:ap-south-1:608145123666:targetgroup/project2-monolith-tg/9f117ccee254993a"]
   termination_policies      = []
-  vpc_zone_identifier       = ["subnet-0a56be6593ebdd335", "subnet-0cc889380b4e6be88"]
+  vpc_zone_identifier       = ["subnet-00a201c4748a71cfc", "subnet-04b517c7f5f9026cb"]
   wait_for_capacity_timeout = null
   wait_for_elb_capacity     = null
   availability_zone_distribution {
@@ -174,9 +174,9 @@ resource "aws_autoscaling_group" "web_app" {
     capacity_reservation_preference = "default"
   }
   launch_template {
-    id = "lt-0c42207fca3dc18df"
+    id = "lt-055384049e4606d45"
     #name    = "project2-monolith-lt"
-    version = "2"
+    version = "1"
   }
   tag {
     key                 = "Name"

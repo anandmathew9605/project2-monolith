@@ -8,7 +8,7 @@ resource "aws_eip" "nat_az1" {
   customer_owned_ipv4_pool  = null
   domain                    = "vpc"
   network_border_group      = "ap-south-1"
-  network_interface         = "eni-065be72c32a3fcd99"
+  #network_interface         = "eni-065be72c32a3fcd99"
   public_ipv4_pool          = "amazon"
   region                    = "ap-south-1"
   tags = {
@@ -29,7 +29,7 @@ resource "aws_eip" "nat_az2" {
   customer_owned_ipv4_pool  = null
   domain                    = "vpc"
   network_border_group      = "ap-south-1"
-  network_interface         = "eni-0870ad9d7beb121b9"
+  #network_interface         = "eni-0870ad9d7beb121b9"
   public_ipv4_pool          = "amazon"
   region                    = "ap-south-1"
   tags = {

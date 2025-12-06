@@ -26,7 +26,7 @@ resource "aws_subnet" "public_az1" {
     Name    = "project2-monolith-public-subnet-1"
     project = "project2-monolith"
   }
-  vpc_id = "vpc-07fb237e5b9e71a46"
+  vpc_id = var.vpc_id
 }
 # __generated__ by Terraform
 # Please review these resources and move them into your main configuration files.
@@ -56,7 +56,7 @@ resource "aws_subnet" "public_az2" {
     Name    = "project2-monolith-public-subnet-2"
     project = "project2-monolith"
   }
-  vpc_id = "vpc-07fb237e5b9e71a46"
+  vpc_id = var.vpc_id
 }
 # __generated__ by Terraform
 # Please review these resources and move them into your main configuration files.
@@ -86,7 +86,7 @@ resource "aws_subnet" "private_app_az1" {
     Name    = "project2-monolith-app-subnet-1"
     project = "project2-monolith"
   }
-  vpc_id = "vpc-07fb237e5b9e71a46"
+  vpc_id = var.vpc_id
 }
 # __generated__ by Terraform
 # Please review these resources and move them into your main configuration files.
@@ -116,7 +116,7 @@ resource "aws_subnet" "private_app_az2" {
     Name    = "project2-monolith-app-subnet-2"
     project = "project2-monolith"
   }
-  vpc_id = "vpc-07fb237e5b9e71a46"
+  vpc_id = var.vpc_id
 }
 # __generated__ by Terraform
 # Please review these resources and move them into your main configuration files.
@@ -146,7 +146,7 @@ resource "aws_subnet" "private_db_az1" {
     Name    = "project2-monolith-db-subnet-1"
     project = "project2-monolith"
   }
-  vpc_id = "vpc-07fb237e5b9e71a46"
+  vpc_id = var.vpc_id
 }
 # __generated__ by Terraform
 # Please review these resources and move them into your main configuration files.
@@ -176,5 +176,5 @@ resource "aws_subnet" "private_db_az2" {
     Name    = "project2-monolith-db-subnet-2"
     project = "project2-monolith"
   }
-  vpc_id = "vpc-07fb237e5b9e71a46"
+  vpc_id = var.vpc_id
 }

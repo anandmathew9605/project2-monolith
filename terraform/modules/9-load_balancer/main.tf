@@ -22,8 +22,8 @@ resource "aws_lb" "main" {
   name                                        = "project2-monolith-alb"
   preserve_host_header                        = false
   region                                      = "ap-south-1"
-  security_groups                             = ["sg-0d313acfea76eefcc"]
-  subnets                                     = ["subnet-005a5ae3da9bc6770", "subnet-058b38a9ab1f26783"]
+  security_groups                             = ["sg-06f5023375e929f9a"]
+  subnets                                     = ["subnet-05152d60592905153", "subnet-092c8c360d8ff786d"]
   tags                                        = {}
   tags_all = {
     project = "project2-monolith"
@@ -76,7 +76,7 @@ resource "aws_lb_target_group" "web_app" {
     project = "project2-monolith"
   }
   target_type = "instance"
-  vpc_id      = "vpc-07fb237e5b9e71a46"
+  vpc_id      = var.vpc_id
   health_check {
     enabled             = true
     healthy_threshold   = 5
@@ -121,7 +121,7 @@ resource "aws_lb_target_group" "web_app" {
 resource "aws_lb_listener" "http" {
   alpn_policy                          = null
   certificate_arn                      = null
-  load_balancer_arn                    = "arn:aws:elasticloadbalancing:ap-south-1:608145123666:loadbalancer/app/project2-monolith-alb/53d2cc1abc297f04"
+  load_balancer_arn                    = "arn:aws:elasticloadbalancing:ap-south-1:608145123666:loadbalancer/app/project2-monolith-alb/eddac737c74e88c4"
   port                                 = 80
   protocol                             = "HTTP"
   region                               = "ap-south-1"
@@ -130,7 +130,7 @@ resource "aws_lb_listener" "http" {
   tags_all                             = {}
   default_action {
     order            = 1
-    target_group_arn = "arn:aws:elasticloadbalancing:ap-south-1:608145123666:targetgroup/project2-monolith-tg/2958670c7dc5cccd"
+    target_group_arn = "arn:aws:elasticloadbalancing:ap-south-1:608145123666:targetgroup/project2-monolith-tg/9f117ccee254993a"
     type             = "forward"
     forward {
       stickiness {
@@ -138,7 +138,7 @@ resource "aws_lb_listener" "http" {
         enabled  = false
       }
       target_group {
-        arn    = "arn:aws:elasticloadbalancing:ap-south-1:608145123666:targetgroup/project2-monolith-tg/2958670c7dc5cccd"
+        arn    = "arn:aws:elasticloadbalancing:ap-south-1:608145123666:targetgroup/project2-monolith-tg/9f117ccee254993a"
         weight = 1
       }
     }
