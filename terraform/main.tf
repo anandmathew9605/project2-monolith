@@ -43,9 +43,9 @@ module "load_balancer" {
   vpc_id = var.vpc_id
 }
 
-module "kms_key" {
+/*module "kms_key" {
   source = "./modules/10-kms_key"
-}
+}*/
 
 /*module "database" {
   source = "./modules/12-database"

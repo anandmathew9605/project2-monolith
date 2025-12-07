@@ -4,7 +4,7 @@
 # __generated__ by Terraform
 resource "aws_instance" "bastion" {
   ami                                  = "ami-02b8269d5e85954ef"
-  associate_public_ip_address          = false
+  associate_public_ip_address          = true
   availability_zone                    = "ap-south-1a"
   disable_api_stop                     = false
   disable_api_termination              = false
@@ -152,7 +152,7 @@ resource "aws_autoscaling_group" "web_app" {
   launch_configuration             = null
   #load_balancers                   = []
   max_instance_lifetime     = 0
-  max_size                  = 0
+  max_size                  = 2
   metrics_granularity       = "1Minute"
   min_elb_capacity          = null
   min_size                  = 0

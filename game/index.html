@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Classic Snake Game</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="main-container">
+    <div class="game-section">
+      <div class="game-box">
+        <div class="game-label"><a href="https://github.com/anandmathew9605" target="_blank">Github</a></div>
+        <div class="score-display">score : <span id="score">0</span></div>
+        <canvas id="gameCanvas" width="400" height="240"></canvas>
+        <div class="game-controls">
+          <button id="startBtn" class="start-btn">Start</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-section">
+      <h1>LEADERBOARD</h1>
+
+      <div class="leaderboard-section">
+        <div class="leaderboard-box">
+          <table id="leaderboardTable">
+            <tbody id="leaderboardBody">
+              <tr><td>1.</td><td>anand</td><td>520</td></tr>
+              <tr><td>2.</td><td>mathew</td><td>510</td></tr>
+              <tr><td>3.</td><td>sherly</td><td>340</td></tr>
+              <tr><td>4.</td><td>diya</td><td>300</td></tr>
+              <tr><td>5.</td><td>nijas</td><td>280</td></tr>
+              <tr><td>6.</td><td>alex</td><td>250</td></tr>
+              <tr><td>7.</td><td>sam</td><td>230</td></tr>
+              <tr><td>8.</td><td>taylor</td><td>210</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Windows 95 Style Game Over Dialog -->
+  <div id="gameOverDialog" class="dialog-overlay" style="display: none;">
+    <div class="dialog-box">
+      <div class="dialog-header">
+        <span>Game Over</span>
+        <button class="dialog-close" onclick="closeGameOverDialog()">×</button>
+      </div>
+      <div class="dialog-content">
+        <p id="gameOverMessage"></p>
+        <input type="text" id="playerNameInput" placeholder="Enter your name" class="dialog-input">
+      </div>
+      <div class="dialog-buttons">
+        <button class="dialog-btn" onclick="submitGameOverScore()">OK</button>
+        <button class="dialog-btn" onclick="closeGameOverDialog()">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>

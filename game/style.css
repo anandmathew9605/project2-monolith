@@ -1,0 +1,43 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Fira Code', monospace; background: #c0c0c0; color: #000; padding: 20px; height: 100vh; margin: 0; overflow: hidden; border: 2px solid; border-color: #dfdfdf #808080 #808080 #dfdfdf; }
+.main-container { display: flex; gap: 0; max-width: 100%; margin: 0; align-items: flex-start; height: 100%; }
+.game-section { flex: 0 0 66.67%; display: flex; flex-direction: column; padding: 20px; height: 100%; justify-content: space-around; align-items: center; }
+.game-label { font-family: 'Fira Code', monospace; font-size: 14px; color: #333; position: absolute; top: 20px; left: 20px; z-index: 10; }
+.game-label a { font-weight: bold; text-decoration: underline; color: #333; text-decoration-color: #333; }
+.game-box { background: #c0c0c0; padding: 3px; border-radius: 0; box-shadow: none; display: flex; flex-direction: column; width: calc(100% - 80px); max-width: calc(100% - 80px); aspect-ratio: 5 / 3; position: relative; margin: 40px auto; border: 2px solid; border-color: #dfdfdf #808080 #808080 #dfdfdf; }
+#gameCanvas { background: #fff; border: 2px solid; border-color: #808080 #dfdfdf #dfdfdf #808080; display: block; width: 100%; height: 100%; flex: 1; position: relative; }
+.game-controls { position: absolute; bottom: 20px; left: 20px; right: 20px; display: flex; justify-content: space-between; align-items: center; gap: 20px; z-index: 10; }
+.start-btn { padding: 10px 30px; font-size: 14px; font-weight: bold; cursor: pointer; border: 2px solid; border-color: #dfdfdf #808080 #808080 #dfdfdf; background: #c0c0c0; color: #000; border-radius: 0; transition: all 0.1s; font-family: 'Fira Code', monospace; box-shadow: inset 1px 1px 0 #dfdfdf, inset -1px -1px 0 #808080; }
+.start-btn:active { border-color: #808080 #dfdfdf #dfdfdf #808080; box-shadow: inset 2px 2px 0 #808080, inset -1px -1px 0 #dfdfdf; }
+.start-btn:hover { background: #c0c0c0; }
+.start-btn:disabled { background: #999; cursor: not-allowed; display: none; }
+.score-display { font-size: 14px; font-weight: normal; color: #333; font-family: 'Fira Code', monospace; position: absolute; top: 20px; right: 20px; z-index: 10; }
+.score-display span { font-weight: normal; }
+.info-section { flex: 0 0 33.33%; padding: 20px; padding-right: 60px; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-start; padding-top: 60px; }
+.info-section h1 { font-size: 28px; font-weight: bold; letter-spacing: 3px; margin: 0 auto 20px auto; color: #000080; font-family: 'Fira Code', monospace; text-decoration: underline; text-shadow: 2px 2px 0 #dfdfdf; border: 2px solid; border-color: #dfdfdf #808080 #808080 #dfdfdf; padding: 15px; background: #c0c0c0; box-shadow: inset 1px 1px 0 #dfdfdf, inset -1px -1px 0 #808080; text-align: center; width: 100%; box-sizing: border-box; max-width: 350px; display: block; }
+.leaderboard-section { margin-bottom: 20px; }
+.leaderboard-section h2 { font-size: 16px; font-weight: bold; margin-bottom: 10px; color: #000080; font-family: 'Fira Code', monospace; text-decoration: underline; letter-spacing: 1px; border: 2px solid; border-color: #dfdfdf #808080 #808080 #dfdfdf; padding: 8px 10px; background: #c0c0c0; box-shadow: inset 1px 1px 0 #dfdfdf, inset -1px -1px 0 #808080; text-align: center; width: 100%; box-sizing: border-box; }
+.leaderboard-box { background: #c0c0c0; padding: 3px; border-radius: 0; box-shadow: none; border: 2px solid; border-color: #dfdfdf #808080 #808080 #dfdfdf; }
+#leaderboardTable { width: 100%; border-collapse: collapse; font-family: 'Fira Code', monospace; font-size: 16px; border: 2px solid; border-color: #808080 #ffffff #ffffff #808080; background: #c0c0c0; }
+#leaderboardTable tbody tr { display: table-row; background: #c0c0c0; border-bottom: 1px solid #808080; }
+#leaderboardTable tbody tr:last-child { border-bottom: 1px solid #808080; }
+#leaderboardTable td { padding: 8px 10px; color: #000000; font-size: 16px; border-right: 1px solid #808080; text-align: center; background: #c0c0c0; }
+#leaderboardTable td:last-child { border-right: none; }
+#leaderboardTable td:first-child { text-align: center; width: 40px; }
+#leaderboardTable td:nth-child(3) { text-align: right; width: 60px; }
+.github-section { margin-top: 20px; }
+.github-link { display: inline-block; padding: 10px 20px; background: #fff; color: #333; text-decoration: none; border: 1px solid #999; border-radius: 4px; font-family: 'Fira Code', monospace; font-size: 14px; transition: all 0.2s; }
+.github-link:hover { background: #f0f0f0; border-color: #333; }
+.note-section { display: none; }
+/* Windows 95 Style Dialog */
+.dialog-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); display: flex; justify-content: center; align-items: center; z-index: 1000; }
+.dialog-box { background: #c0c0c0; border: 2px solid; border-color: #dfdfdf #808080 #808080 #dfdfdf; box-shadow: inset 1px 1px 0 #dfdfdf, inset -1px -1px 0 #808080; width: 400px; font-family: 'MS Sans Serif', Arial, sans-serif; }
+.dialog-header { background: linear-gradient(90deg, #000080 0%, #1084d7 100%); color: #fff; padding: 2px 2px 2px 20px; display: flex; justify-content: space-between; align-items: center; font-weight: bold; font-size: 14px; }
+.dialog-close { background: #c0c0c0; border: 2px solid; border-color: #dfdfdf #808080 #808080 #dfdfdf; width: 24px; height: 22px; padding: 0; cursor: pointer; font-size: 16px; font-weight: bold; }
+.dialog-close:active { border-color: #808080 #dfdfdf #dfdfdf #808080; }
+.dialog-content { padding: 20px; background: #c0c0c0; min-height: 80px; display: flex; flex-direction: column; justify-content: center; }
+.dialog-content p { margin: 0 0 15px 0; font-size: 14px; font-family: 'Fira Code', monospace; color: #000; }
+.dialog-input { padding: 4px 2px; border: 2px solid; border-color: #808080 #dfdfdf #dfdfdf #808080; background: #fff; font-family: 'Fira Code', monospace; font-size: 14px; color: #000; }
+.dialog-buttons { padding: 10px 10px; background: #c0c0c0; display: flex; justify-content: flex-end; gap: 10px; border-top: 1px solid #dfdfdf; }
+.dialog-btn { padding: 4px 16px; background: #c0c0c0; border: 2px solid; border-color: #dfdfdf #808080 #808080 #dfdfdf; font-family: 'Fira Code', monospace; font-size: 14px; cursor: pointer; min-width: 75px; box-shadow: inset 1px 1px 0 #dfdfdf, inset -1px -1px 0 #808080; }
+.dialog-btn:active { border-color: #808080 #dfdfdf #dfdfdf #808080; box-shadow: inset 2px 2px 0 #808080, inset -1px -1px 0 #dfdfdf; }

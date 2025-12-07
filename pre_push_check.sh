@@ -4,7 +4,7 @@ echo "=========================================="
 echo "🔒 SECURITY CHECK BEFORE GIT PUSH"
 echo "=========================================="
 
-cd ~/Desktop/project2-monolith
+cd ~/Documents/personal/projects/project2-monolith
 
 # Check 1: .gitignore exists
 if [ -f .gitignore ]; then
@@ -66,6 +66,7 @@ echo "=========================================="
 echo ""
 echo "To complete the push, run:"
 echo ""
-echo "git commit -m \"PHASE 1 COMPLETE: Terraform infrastructure migration\n\n- 30 AWS resources imported to Terraform state\n- terraform plan shows 0 changes\n- Infrastructure reproducible via IaC\""
+#echo "git commit -m \"PHASE 1 COMPLETE: Terraform infrastructure migration\n\n- 30 AWS resources imported to Terraform state\n- terraform plan shows 0 changes\n- Infrastructure reproducible via IaC\""
+echo "git commit -m \"Terraform refactor\""
 echo ""
 echo "git push origin main"
